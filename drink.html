@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Burger House</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img
+                src="assets/logo-dark.png"
+                alt="logo"
+                class="nav__logo-dark"
+              />
+              <img
+                src="assets/logo-white.png"
+                alt="logo"
+                class="nav__logo-white"
+              />
+            </a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="index.html">INICIO</a></li>
+          <li><a href="index.html#cafe1">CAFE EXPRESSO</a></li>
+          <li><a href="index.html#footer">CONTACTOS</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="section__container order__container" id="drink">
+      <h2 class="section__header">CAFE CON LICOR</h2>
+      <div class="order__grid">
+        <div class="order__card">
+          <img src="assets/licor/cafe-baileys.png" alt="order" />
+          <h4>Baileys</h4>
+          <p>Café lungo sobre base de Baileys y leche caliente emulsionada.</p>
+          <button
+            class="btn"
+            data-image="assets/licor/cafe-baileys.png"
+            data-title="Baileys"
+            data-description="Café lungo sobre base de Baileys y leche caliente emulsionada."
+            data-price="S/22.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/licor/cafe-escoces.png" alt="order" />
+          <h4>Escocés</h4>
+          <p>
+            Café lungo con whisky escocés coronado con helado de vainilla y nata
+            semimontada.
+          </p>
+          <button
+            class="btn"
+            data-image="assets/licor/cafe-escoces.png"
+            data-title="Escocés"
+            data-description="Café lungo con whisky escocés coronado con helado de vainilla y nata semimontada."
+            data-price="S/20.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/licor/cubabella.png" alt="order" />
+          <h4>Cubabella</h4>
+          <p>
+            Café doble espresso sobre base de salsa de chocolate y ron, con capa
+            de nata semimontada. Decorado con virutas de chocolate.
+          </p>
+          <button
+            class="btn"
+            data-image="assets/licor/cubabella.png"
+            data-title="Cubabella"
+            data-description="Café doble espresso sobre base de salsa de chocolate y ron, con capa de nata semimontada. Decorado con virutas de chocolate."
+            data-price="S/20.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/licor/irish-cream.png" alt="order" />
+          <h4>Irish Cream</h4>
+          <p>
+            Café espresso sobre base de salsa de chocolate y Baileys, con leche
+            caliente emulsionada. Decorado con cacao.
+          </p>
+          <button
+            class="btn"
+            data-image="assets/licor/irish-cream.png"
+            data-title="Irish Cream"
+            data-description="Café espresso sobre base de salsa de chocolate y Baileys, con leche caliente emulsionada. Decorado con cacao."
+            data-price="S/25.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/licor/irlandés.png" alt="order" />
+          <h4>Irlandés</h4>
+          <p>
+            Café doble espresso sobre base de whisky con capa de nata
+            semimontada.
+          </p>
+          <button
+            class="btn"
+            data-image="assets/licor/irlandés.png"
+            data-title="Irlandés"
+            data-description="Café doble espresso sobre base de whisky con capa de nata semimontada."
+            data-price="S/18.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/licor/maracaibo.png" alt="order" />
+          <h4>Maracaibo</h4>
+          <p>
+            Café doble espresso sobre base de salsa de chocolate y Baileys, con
+            nata semimontada. Decorado con cacao.
+          </p>
+          <button
+            class="btn"
+            data-image="assets/licor/maracaibo.png"
+            data-title="Maracaibo"
+            data-description="Café doble espresso sobre base de salsa de chocolate y Baileys, con nata semimontada. Decorado con cacao."
+            data-price="S/20.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+
+    <script>
+      document.querySelectorAll(".btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const image = this.getAttribute("data-image");
+          const title = this.getAttribute("data-title");
+          const description = this.getAttribute("data-description");
+          const price = this.getAttribute("data-price");
+
+          const url = `details.html?image=${encodeURIComponent(
+            image
+          )}&title=${encodeURIComponent(
+            title
+          )}&description=${encodeURIComponent(
+            description
+          )}&price=${encodeURIComponent(price)}`;
+          window.location.href = url;
+        });
+      });
+    </script>
+  </body>
+</html>

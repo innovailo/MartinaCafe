@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Burger House</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img
+                src="assets/logo-dark.png"
+                alt="logo"
+                class="nav__logo-dark"
+              />
+              <img
+                src="assets/logo-white.png"
+                alt="logo"
+                class="nav__logo-white"
+              />
+            </a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="index.html">INICIO</a></li>
+          <li><a href="index.html#cafe2">CAFE LICOR</a></li>
+          <li><a href="index.html#footer">CONTACTOS</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="section__container order__container" id="burger">
+      <h2 class="section__header">CAFE EXPRESSO</h2>
+      <div class="order__grid">
+        <div class="order__card">
+          <img src="assets/expresso/americano.png" alt="order" />
+          <h4>Americano</h4>
+          <p>Café espresso o lungo y agua caliente.</p>
+          <button
+            class="btn"
+            data-image="assets/expresso/americano.png"
+            data-title="Americano"
+            data-description="Café espresso o lungo y agua caliente."
+            data-price="S/10.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/expresso/cappuccino.png" alt="order" />
+          <h4>Cappuccino</h4>
+          <p>Café espresso y gran capa de leche caliente emulsionada.</p>
+          <button
+            class="btn"
+            data-image="assets/expresso/cappuccino.png"
+            data-title="Cappuccino"
+            data-description="Café espresso y gran capa de leche caliente emulsionada."
+            data-price="S/8.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/expresso/doble-espresso.png" alt="order" />
+          <h4>Doble Expresso</h4>
+          <p>Café doble de 60 ml</p>
+          <button
+            class="btn"
+            data-image="assets/expresso/doble-espresso.png"
+            data-title="Doble Expresso"
+            data-description="Café doble de 60 ml"
+            data-price="S/7.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/expresso/espresso.png" alt="order" />
+          <h4>Expresso</h4>
+          <p>Café de 30 ml</p>
+          <button
+            class="btn"
+            data-image="assets/expresso/espresso.png"
+            data-title="Expresso"
+            data-description="Café de 30 ml"
+            data-price="S/6.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/expresso/flat-white.png" alt="order" />
+          <h4>Flat White</h4>
+          <p>Café doble espresso y fina capa de leche caliente emulsionada</p>
+          <button
+            class="btn"
+            data-image="assets/expresso/flat-white.png"
+            data-title="Flat White"
+            data-description="Café doble espresso y fina capa de leche caliente emulsionada"
+            data-price="S/10.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/expresso/macchiato.png" alt="order" />
+          <h4>Macchiato</h4>
+          <p>Café espresso con un toque de leche caliente emulsionada.</p>
+          <button
+            class="btn"
+            data-image="assets/expresso/macchiato.png"
+            data-title="Macchiato"
+            data-description="Café espresso con un toque de leche caliente emulsionada."
+            data-price="S/10.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+
+    <script>
+      document.querySelectorAll(".btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const image = this.getAttribute("data-image");
+          const title = this.getAttribute("data-title");
+          const description = this.getAttribute("data-description");
+          const price = this.getAttribute("data-price");
+
+          const url = `details.html?image=${encodeURIComponent(
+            image
+          )}&title=${encodeURIComponent(
+            title
+          )}&description=${encodeURIComponent(
+            description
+          )}&price=${encodeURIComponent(price)}`;
+          window.location.href = url;
+        });
+      });
+    </script>
+  </body>
+</html>

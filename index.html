@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Martina Café</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img
+                src="assets/logo-dark.png"
+                alt="logo"
+                class="nav__logo-dark"
+              />
+              <img
+                src="assets/logo-white.png"
+                alt="logo"
+                class="nav__logo-white"
+              />
+            </a>
+          </div>
+          <!-- Boton Menu - Modo Movil -->
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <!-- OPCIONES DE MENU -->
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">INICIO</a></li>
+          <li><a href="#cafe1">CAFE EXPRESSO</a></li>
+          <li><a href="#cafe2">CAFE LICOR</a></li>
+          <li><a href="#footer">CONTACTOS</a></li>
+        </ul>
+      </nav>
+      <div class="section__container header__container" id="home">
+        <div class="header__image">
+          <img src="assets/CapuchinoBanner.png" alt="header" />
+        </div>
+        <div class="header__content">
+          <h2>ES BUEN MOMENTO PARA EL GRAN SABOR DE UN BUEN CAFE</h2>
+          <h1>
+            CAFE<br />
+            <span>CAPPUCCINO</span>
+          </h1>
+        </div>
+      </div>
+    </header>
+    <!-- SECCION VIDEO -->
+    <section class="section__container" id="video-section">
+      <div class="video-grid">
+        <!-- Card Video 1 -->
+        <div class="video-overlay">
+          <video
+            src="assets/Video1.mp4"
+            width="100%"
+            height="100%"
+            muted
+            autoplay
+            loop
+          ></video>
+          <div class="overlay-content">
+            <h2>Americano</h2>
+          </div>
+        </div>
+        <!-- Card Video 2 -->
+        <div class="video-overlay">
+          <video
+            src="assets/Video2.mp4"
+            width="100%"
+            height="100%"
+            muted
+            autoplay
+            loop
+          ></video>
+          <div class="overlay-content">
+            <h2>Cappuccino</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section__container order__container" id="cafe1">
+      <h3>ELIGE Y DISFRUTA</h3>
+      <h2 class="section__header">CAFE EXPRESSO</h2>
+      <div class="order__grid">
+        <div class="order__card">
+          <img src="assets/expresso/americano.png" alt="order" />
+          <h4>Americano</h4>
+          <p>Café espresso o lungo y agua caliente.</p>
+          <!-- ENVIAR DETALLES DE PRODUCTO -->
+          <button
+            class="btn"
+            data-image="assets/expresso/americano.png"
+            data-title="Americano"
+            data-description="Café espresso o lungo y agua caliente."
+            data-price="S/10.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/expresso/cappuccino.png" alt="order" />
+          <h4>Cappuccino</h4>
+          <p>Café espresso y gran capa de leche caliente emulsionada.</p>
+          <!-- ENVIAR DETALLES DE PRODUCTO -->
+          <button
+            class="btn"
+            data-image="assets/expresso/cappuccino.png"
+            data-title="Cappuccino"
+            data-description="Café espresso y gran capa de leche caliente emulsionada."
+            data-price="S/8.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/expresso/doble-espresso.png" alt="order" />
+          <h4>Doble Expresso</h4>
+          <p>Café doble de 60 ml</p>
+          <!-- ENVIAR DETALLES DE PRODUCTO -->
+          <button
+            class="btn"
+            data-image="assets/expresso/doble-espresso.png"
+            data-title="Doble Expresso"
+            data-description="Café doble de 60 ml"
+            data-price="S/7.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+      </div>
+      <div class="box-btn">
+        <button class="btn1" id="burgerBtn">Ver todo</button>
+      </div>
+    </section>
+
+    <section class="section__container order__container" id="cafe2">
+      <h3>ELIGE Y DISFRUTA</h3>
+      <h2 class="section__header">CAFE CON LICOR</h2>
+      <div class="order__grid">
+        <div class="order__card">
+          <img src="assets/licor/cafe-baileys.png" alt="order" />
+          <h4>Baileys</h4>
+          <p>Café lungo sobre base de Baileys y leche caliente emulsionada.</p>
+          <!-- ENVIAR DETALLES DE PRODUCTO -->
+          <button
+            class="btn"
+            data-image="assets/licor/cafe-baileys.png"
+            data-title="Baileys"
+            data-description="Café lungo sobre base de Baileys y leche caliente emulsionada."
+            data-price="S/22.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/licor/cafe-escoces.png" alt="order" />
+          <h4>Escocés</h4>
+          <p>
+            Café lungo con whisky escocés coronado con helado de vainilla y nata
+            semimontada.
+          </p>
+          <!-- ENVIAR DETALLES DE PRODUCTO -->
+          <button
+            class="btn"
+            data-image="assets/licor/cafe-escoces.png"
+            data-title="Escocés"
+            data-description="Café lungo con whisky escocés coronado con helado de vainilla y nata semimontada."
+            data-price="S/20.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+        <div class="order__card">
+          <img src="assets/licor/cubabella.png" alt="order" />
+          <h4>Cubabella</h4>
+          <p>
+            Café doble espresso sobre base de salsa de chocolate y ron, con capa
+            de nata semimontada. Decorado con virutas de chocolate.
+          </p>
+          <!-- ENVIAR DETALLES DE PRODUCTO -->
+          <button
+            class="btn"
+            data-image="assets/licor/cubabella.png"
+            data-title="Cubabella"
+            data-description="Café doble espresso sobre base de salsa de chocolate y ron, con capa de nata semimontada. Decorado con virutas de chocolate."
+            data-price="S/20.00"
+          >
+            COMPRAR
+          </button>
+        </div>
+      </div>
+
+      <div class="box-btn">
+        <button class="btn1" id="drinkBtn">Ver todo</button>
+      </div>
+    </section>
+
+    <footer class="footer" id="footer">
+      <div class="section__container footer__container">
+        <div class="footer__logo">
+          <img src="assets/logo-white.png" alt="logo" />
+        </div>
+        <div class="footer__content">
+          <p>
+            Bienvenido a Martina Café, donde se unen la pasión por un buen café
+            excepcional.
+          </p>
+          <div>
+            <ul class="footer__links">
+              <li>
+                <span><i class="ri-map-pin-2-fill"></i></span>
+                Ilo, Moquegua - Jr. Zepita 657
+              </li>
+              <li>
+                <span><i class="ri-time-fill"></i></span>
+                Horario: Lun a Vie - 08:30 a 21:00
+              </li>
+              <li>
+                <span><i class="ri-smartphone-fill icon"></i></span>
+                Celular: +51 983723837
+              </li>
+              <li>
+                <span><i class="ri-mail-fill"></i></span>
+                martinacoffee61@gmail.com
+              </li>
+            </ul>
+            <div class="footer__socials">
+              <a href="#"><i class="ri-facebook-circle-fill"></i></a>
+              <a href="#"><i class="ri-whatsapp-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2024 Created by CQF. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+
+    <script>
+      document.querySelectorAll(".btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          /* ENVIAR DETALLES DE PRODUCTO */
+          const image = this.getAttribute("data-image");
+          const title = this.getAttribute("data-title");
+          const description = this.getAttribute("data-description");
+          const price = this.getAttribute("data-price");
+
+          const url = `details.html?image=${encodeURIComponent(
+            image
+          )}&title=${encodeURIComponent(
+            title
+          )}&description=${encodeURIComponent(
+            description
+          )}&price=${encodeURIComponent(price)}`;
+
+          window.location.href = url;
+        });
+      });
+
+      document.querySelectorAll(".btn1").forEach((button) => {
+        button.addEventListener("click", function () {
+          const sectionId = this.getAttribute("id");
+          const url = `details.html#${sectionId}`;
+          window.location.href = url;
+        });
+      });
+
+      document
+        .getElementById("burgerBtn")
+        .addEventListener("click", function () {
+          window.location.href = "burger.html";
+        });
+
+      document
+        .getElementById("drinkBtn")
+        .addEventListener("click", function () {
+          window.location.href = "drink.html";
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Burger House</title>
+
+    <style>
+      /* Estilos para la superposición y el pop-up de carga */
+      #overlay {
+        display: none; /* Inicialmente oculto */
+        position: fixed;
+        z-index: 999; /* Debajo del pop-up de carga */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+      }
+
+      #loading {
+        display: none; /* Inicialmente oculto */
+        position: fixed;
+        z-index: 1000; /* Por encima de la superposición */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      #confirmation {
+        display: none; /* Inicialmente oculto */
+        position: fixed;
+        z-index: 1001; /* Por encima del pop-up de carga */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      #confirmation button {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #confirmation button:hover {
+        background-color: #45a049;
+      }
+      .order__containers {
+        /*height: 800px;*/
+        width: 1200px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr auto;
+        grid-template-areas:
+          "detail detail qr qr"
+          ". form form .";
+        gap: 40px;
+      }
+      /* Estilos para la sección de detalles del producto */
+      .product__details {
+        grid-area: detail;
+        background-color: #fff;
+        border-radius: 2rem;
+        box-shadow: 5px 5px 0px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 40px;
+        justify-content: space-around;
+      }
+
+      .product__image img {
+        max-width: 30rem;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+
+      .product__info {
+        flex: 1;
+      }
+      #product-description {
+        margin: 20px;
+      }
+      #product-price {
+        font-size: 2.5rem;
+        font-weight: 500;
+        font-family: var(--header-font-1);
+        color: var(--primary-color);
+        text-align: center;
+        line-height: 3.75rem;
+        margin: 2.5rem;
+      }
+
+      /* Estilos para el formulario de pedido */
+      .order__form {
+        grid-area: form;
+        background-color: #fff;
+        width: 100%;
+        margin-left: auto;
+        padding: 20px;
+        box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .order__form h3 {
+        margin-bottom: 10px;
+      }
+
+      .order__form form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .order__form input,
+      .order__form button {
+        margin-bottom: 1.5rem;
+        padding: 0.5rem;
+      }
+
+      .order__form button {
+        background-color: olivedrab;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 20px 0;
+      }
+
+      .qr__code {
+        grid-area: qr;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .qr__code img {
+        border-radius: 2rem;
+        max-width: 100%;
+        height: 100%;
+      }
+
+      h5 {
+        font-size: 0.9rem;
+        margin: 10px;
+        color: red;
+      }
+
+      @media screen and (max-width: 540px) {
+        .order__containers {
+          height: 100%;
+          width: 100%;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1.5fr 1fr auto;
+          grid-template-areas:
+            "detail"
+            "qr"
+            "form";
+        }
+      }
+
+      @media screen and(max-width: 768px) {
+        .order__containers {
+          height: 100%;
+          width: 90vw;
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(6, 1fr);
+          grid-template-areas:
+            "detail"
+            "detail"
+            "qr"
+            "qr"
+            "form"
+            "form";
+        }
+      }
+
+      @media screen and(max-width: 1024px) {
+        .order__containers {
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: 1fr auto;
+          grid-template-areas:
+            "detail detail qr qr"
+            ". form form .";
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Superposición y pop-up de carga -->
+    <div id="overlay"></div>
+    <div id="loading">Enviando datos, por favor espera...</div>
+    <div id="confirmation">
+      <p>
+        Pedido realizado correctamente.<br />En breve te llamaremos para
+        confirmar tu pedido.
+      </p>
+      <button onclick="goToIndex()">Ir a Inicio</button>
+    </div>
+
+    <header class="header">
+      <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img
+                src="assets/logo-dark.png"
+                alt="logo"
+                class="nav__logo-dark"
+              />
+              <img
+                src="assets/logo-white.png"
+                alt="logo"
+                class="nav__logo-white"
+              />
+            </a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="index.html">INICIO</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="section__container order__containers" id="burger">
+      <div class="product__details">
+        <div class="product__image">
+          <img src="" alt="Product Image" id="product-image" />
+        </div>
+        <div class="product__info">
+          <h2 class="section__header" id="product-title"></h2>
+          <p id="product-description"></p>
+          <p id="product-price"></p>
+        </div>
+      </div>
+
+      <div class="order__form">
+        <h3>Realizar Pedido</h3>
+        <h5>*Antes de enviar el pedido, realize el pago por YAPE</br> y luego ingrese el N° de Operación</h5>
+        <form id="order-form">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Nombre"
+            required
+          />
+          <input 
+            type="text" id="dni" name="dni" placeholder="DNI" required />
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Dirección"
+            required
+          />
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="Celular"
+            required
+          />
+          <input
+            type="text"
+            id="operation"
+            name="operation"
+            placeholder="N° de operation"
+            required
+          />
+          <button type="submit" id="send-whatsapp">Enviar Pedido</button>
+        </form>
+      </div>
+
+      <div class="qr__code">
+        <img src="assets/yape_pago.jpg" alt="QR Code" />
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const image = urlParams.get("image");
+        const title = urlParams.get("title");
+        const description = urlParams.get("description");
+        const price = urlParams.get("price");
+
+        if (image && title && description) {
+          document.getElementById("product-image").src = image;
+          document.getElementById("product-title").textContent = title;
+          document.getElementById("product-description").textContent =
+            description;
+          document.getElementById("product-price").textContent = price;
+        } else {
+          alert("No product details found.");
+        }
+      });
+
+      // Enviar datos al script de Google Apps Script
+      document
+        .getElementById("send-whatsapp")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const dni = document.getElementById("dni").value;
+          const address = document.getElementById("address").value;
+          const phone = document.getElementById("phone").value;
+          const operation = document.getElementById("operation").value;
+          const product = document.getElementById("product-title").textContent;
+          const price = document.getElementById("product-price").textContent; // Ajusta esto según sea necesario
+          const date = new Date().toLocaleString("es-PE", {
+            timeZone: "America/Lima",
+          });
+
+          // Verificar que todos los campos estén llenos
+          if (!name.trim() ||!dni.trim() ||!address.trim() ||!phone.trim() ||!operation.trim() ||!product.trim() ||!price.trim()) {
+            alert("Por favor, complete todos los campos.");
+            return;
+          }  
+
+          // Construir la URL con los parámetros 
+          const url = `https://script.google.com/macros/s/AKfycbzqvD_did8j8NAnm5suletfRnTlzRdp77uTYTXtUMC5u-Y47roIS_JTgCZcnQJ-flSK/exec?name=${encodeURIComponent(
+            name
+          )}&dni=${encodeURIComponent(dni)}&address=${encodeURIComponent(
+            address
+          )}&phone=${encodeURIComponent(phone)}&product=${encodeURIComponent(
+            product
+          )}&price=${encodeURIComponent(price)}&operation=${encodeURIComponent(operation)}&date=${encodeURIComponent(
+            date
+          )}`;
+
+          // Mostrar la superposición y el pop-up de carga
+          document.getElementById("overlay").style.display = "block";
+          document.getElementById("loading").style.display = "block";
+
+          // Realizar la solicitud GET
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              // Ocultar el pop-up de carga
+              document.getElementById("loading").style.display = "none";
+              if (data.status === "success") {
+                limpiarCampos();
+                // Mostrar el pop-up de confirmación
+                document.getElementById("confirmation").style.display = "block";
+              } else {
+                document.getElementById("overlay").style.display = "none";
+                alert("Error al enviar los datos: " + data.message);
+              }
+            })
+            .catch((error) => {
+              // Ocultar la superposición y el pop-up de carga
+              document.getElementById("overlay").style.display = "none";
+              document.getElementById("loading").style.display = "none";
+              console.error("Error:", error);
+              alert("Error al enviar los datos.");
+            });
+        });
+
+      function limpiarCampos() {
+        document.getElementById("name").value = "";
+        document.getElementById("dni").value = "";
+        document.getElementById("address").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("operation").value = "";
+        document.getElementById("product-title").textContent = "";
+        
+      }
+
+      // Función para redirigir a index.html
+      function goToIndex() {
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
